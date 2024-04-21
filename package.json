@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx webpack --config webpack.config.js --mode production",
-    "build-dev": "npx webpack --config webpack.config.js --mode development"
+    "build-dev": "npx webpack --config webpack.config.js --mode development",
+    "package": "zip -r dist/add-to-gcal-$npm_package_version.zip extension"
   },
   "author": "Nathan Abraham",
   "license": "ISC",
