@@ -1,0 +1,16 @@
+{
+  "name": "Add to Google Calendar",
+  "description": "Adds a context menu item to create an event in google calendar",
+  "version": "0.0.1",
+  "permissions": ["contextMenus"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "icons": {
+      "16": "assets/16.png",
+      "48": "assets/48.png",
+      "128": "assets/128.png"
+  },
+  "manifest_version": 3
+}

@@ -1,0 +1,17 @@
+{
+  "name": "add-to-gcal",
+  "version": "0.0.1",
+  "description": "Add event to google calendar chrome extension",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx webpack --config webpack.config.js --mode production",
+    "build-dev": "npx webpack --config webpack.config.js --mode development"
+  },
+  "author": "Nathan Abraham",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
