@@ -4,7 +4,7 @@
   "description": "Add event to google calendar chrome extension",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "npx webpack --config webpack.config.js --mode production",
     "build-dev": "npx webpack --config webpack.config.js --mode development",
     "package": "zip -r dist/add-to-gcal-$npm_package_version.zip extension"
@@ -12,7 +12,15 @@
   "author": "Nathan Abraham",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
+    "@jest/globals": "^29.7.0",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4"
+  },
+  "jest": {
+    "globalSetup": "./test/global-setup.js"
   }
 }

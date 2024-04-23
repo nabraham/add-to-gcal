@@ -54,17 +54,10 @@ var onClick = (info, tab) => {
 
     if (urls.length) {
         chrome.tabs.create({ url: urls[0].url });
-        return;
     } else {
-        let date = new Date(selected);
-        if (date.toString() !== 'Invalid Date') {
-            let url = createEventUrl(date, tab);
-            chrome.tabs.create({ url });
-            return;
-        }
+        chrome.tabs.create({ url: 'assets/error.html' });
     }
 
-    chrome.tabs.create({ url: 'assets/error.html' });
 };
 
 chrome.contextMenus.onClicked.addListener(onClick);
