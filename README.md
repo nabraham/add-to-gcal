@@ -4,7 +4,7 @@ An extension to allow the quick creation of events in google calendar by selecti
 
 ## Overview
 
-Attempts to create a calendar event based on the date-like string that is highlighted.  This can be as straightforward as `1970-01-01 00:00:00` or as tricky as `Tuesday, 8:30 PM`.
+Attempts to create a calendar event based on the date-like string that is highlighted. This can be as straightforward as `1970-01-01 00:00:00` or as tricky as `Tuesday, 8:30 PM`.
 
 ![](assets/howto.png)
 
@@ -12,12 +12,13 @@ Attempts to create a calendar event based on the date-like string that is highli
 
 These are some of the formats that are supported:
 
-* anything accepted by javascript's [Date()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#several_ways_to_create_a_date_object)
-* Tuesday, 8:00PM
+-   anything accepted by javascript's [Date()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#several_ways_to_create_a_date_object)
+-   Tuesday, 8:00PM
 
 ## Parser format
 
-Custom parsers can be added by creating a new file in `src/background/parsers`.  Ex:
+Custom parsers can be added by creating a new file in `src/background/parsers`. Ex:
+
 ```typescript
 // src/parsers/foo.ts
 var parsers: Parser[] = [{
@@ -44,6 +45,7 @@ export { parsers };
 ```
 
 The parser should then be added to `src/parsers/background/index.ts`:
+
 ```diff
 +import { parsers as foo } from "./foo.js"
 
@@ -61,11 +63,12 @@ var parsers: Parser[] = [
 1. In a regular tab, select a string and right-click to view the context menu
 
 ## Other commands
-* `npm run test` - run the tests in jest
-* `npm run release` - create a release zip in `/release`
+
+-   `npm run test` - run the tests in jest
+-   `npm run release` - create a release zip in `/release`
 
 ## Contribute
 
-* Found a bug?  Start a [discussion](https://github.com/nabraham/add-to-gcal/discussions).
-* Want a new feature (like iCal or outlook)?  See above or better yet: fork and submit a merge request.
-* Found this useful and want to show thanks?  [Buy me a coffee](https://buymeacoffee.com/nabraham)
+-   Found a bug? Start a [discussion](https://github.com/nabraham/add-to-gcal/discussions).
+-   Want a new feature (like iCal or outlook)? See above or better yet: fork and submit a merge request.
+-   Found this useful and want to show thanks? [Buy me a coffee](https://buymeacoffee.com/nabraham)
