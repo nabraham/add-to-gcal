@@ -1,22 +1,24 @@
+import { Parser } from "./parser.type.js";
+
 var daysRx = 'SUNDAY|MONDAY|TUESDAY|WEDNESDAY|THURSDAY|FRIDAY|SATURDAY|TODAY';
 var days = daysRx.split('|');
 
-function sanitize(str) {
-    return str.replaceAll(/[^A-Za-z0-9: ]/g, '').toUpperCase()
+var sanitize = (s: string): string => {
+    return s.replace(/[^A-Za-z0-9: ]/g, '').toUpperCase()
 }
 
-function makeDateString(year, month, date, time, ampm) {
+var makeDateString = (year: number, month: number, date: number, time: string, ampm: string): string => {
     return [ [ year, (month + 1),  date ].join('/'), time, ampm ].join(' ');
 }
 
-var parsers = [{
+var parsers: Parser[] = [{
     name: 'ebay_multi_day',
     description: 'Tuesday 8:00 PM -OR- Today 8:00 PM',
-    group: (s) => {
+    group: (s: string) => {
         let rx = new RegExp('(' + daysRx + ') ([0-9:]+) (AM|PM)','g');
         return rx.exec(sanitize(s));
     },
-    format: (groups) => {
+    format: (groups: any) => {
         let day = groups[1];
         let time = groups[2];
         let ampm = groups[3];

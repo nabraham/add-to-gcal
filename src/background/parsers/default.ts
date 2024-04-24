@@ -1,11 +1,13 @@
-var parsers = [{
+import { Parser } from "./parser.type.js";
+
+var parsers: Parser[] = [{
     name: 'default',
     description: 'Date(<input>)',
-    group: (s) => {
+    group: (s: string) => {
         let date = new Date(s);
         return date.toString() !== 'Invalid Date' ? date : undefined;
     },
-    format: (groups) => {
+    format: (groups: any) => {
         return groups;
     }
 }];

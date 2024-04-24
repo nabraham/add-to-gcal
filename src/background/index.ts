@@ -11,14 +11,14 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-import { parsers } from "./parsers/index";
+import { parsers } from "./parsers/index.js";
 
-var pad = (num) => {
+var pad = (num: number) => {
     let s = '' + num;
     return s.length === 1 ? '0' + s : s;
 };
 
-var createEventUrl = (date, tab) => {
+var createEventUrl = (date: Date, tab?: chrome.tabs.Tab) => {
     let dateStr = [
         date.getFullYear(),
         pad(date.getMonth() + 1),
@@ -33,13 +33,13 @@ var createEventUrl = (date, tab) => {
         'https://calendar.google.com/calendar/u/0/r/eventedit?dates=',
         dateStr, '/', dateStr, '&',
         'ctz=', Intl.DateTimeFormat().resolvedOptions().timeZone, '&',
-        'text=', tab.title, '&',
-        'location=', tab.url
+        'text=', tab?.title ?? 'TITLE', '&',
+        'location=', tab?.url ?? 'URL'
     ].join('');
 };
 
-var onClick = (info, tab) => {
-    let selected = info.selectionText;
+var onClick = (info: chrome.contextMenus.OnClickData, tab?: chrome.tabs.Tab) => {
+    let selected = info.selectionText || '';
 
     let urls = parsers.map(parser => {
         let groups = parser.group(selected);
@@ -52,7 +52,7 @@ var onClick = (info, tab) => {
         return undefined;
     }).filter(x => !!x);
 
-    if (urls.length) {
+    if (urls.length && urls[0]) {
         chrome.tabs.create({ url: urls[0].url });
     } else {
         chrome.tabs.create({ url: 'assets/error.html' });

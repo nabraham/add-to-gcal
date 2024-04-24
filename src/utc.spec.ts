@@ -1,6 +1,6 @@
 /**
  * Ensure that jest has set timezone to UTC
- * See tests/global-setup.js
+ * See global-test-setup.ts
  */
 
 describe('Timezones', () => {

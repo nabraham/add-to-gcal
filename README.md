@@ -6,22 +6,23 @@ An extension to allow the quick creation of events in google calendar by selecti
 
 Attempts to create a calendar event based on the date-like string that is highlighted.  This can be as straightforward as `1970-01-01 00:00:00` or as tricky as `Tuesday, 8:30 PM`.
 
-![](extension/assets/howto.png)
+![](assets/howto.png)
 
 ## Implementation Notes
 
 These are some of the formats that are supported:
 
-* anything accepted by javascript's `Date()` [ref]()
+* anything accepted by javascript's [Date()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#several_ways_to_create_a_date_object)
 * Tuesday, 8:00PM
 
 ## Parser format
 
-Custom parsers can be added by creating a new file in `src/parsers`.  Ex:
-```javascript
-// src/parsers/fooParser.js
-var foo = {
+Custom parsers can be added by creating a new file in `src/background/parsers`.  Ex:
+```typescript
+// src/parsers/foo.ts
+var parsers: Parser[] = [{
     name: 'An identifying string',
+    description: 'A description or example of expected strings it can process'
     group: (s: string): any[] | undefined => {
         /**
          * This function should return a truthy object if
@@ -37,33 +38,31 @@ var foo = {
          */
         return new Date(groups[0]);
     }
-};
-
-var parsers = [ foo ];
+}];
 
 export { parsers };
 ```
 
-The parser should then be added to `src/parsers/index.js`:
-```javascript
-import { parsers as ebay } from './ebay'; // existing
-import { parsers as foo } from './fooParser';
+The parser should then be added to `src/parsers/background/index.ts`:
+```diff
++import { parsers as foo } from "./foo.js"
 
-var parsers = [
-    ...ebay, // existing
-    ...fooParser
+var parsers: Parser[] = [
++    ...foo,
+    ...
 ];
-
-export { parsers }; // existing
 ```
-
 
 ## Running this extension
 
 1. Clone this repository.
 1. `npm install && npm run build`
-1. Load the `extension` directory in Chrome as an [unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked).
-1. Right-click within the browser to view the context menu
+1. Load the `dist` directory in Chrome as an [unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked).
+1. In a regular tab, select a string and right-click to view the context menu
+
+## Other commands
+* `npm run test` - run the tests in jest
+* `npm run release` - create a release zip in `/release`
 
 ## Contribute
 
