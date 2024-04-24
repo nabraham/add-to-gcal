@@ -1,0 +1,3 @@
+echo "HUSKY pre-commit: lint / prettier"
+npm run lint
+npm run prettier-and-fix

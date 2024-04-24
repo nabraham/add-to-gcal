@@ -58,7 +58,7 @@ var parsers: Parser[] = [
 ## Running this extension
 
 1. Clone this repository.
-1. `npm install && npm run build`
+1. `npm install && npm run prepare && npm run build`
 1. Load the `dist` directory in Chrome as an [unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked).
 1. In a regular tab, select a string and right-click to view the context menu
 
