@@ -62,10 +62,19 @@ var parsers: Parser[] = [
 1. Load the `dist` directory in Chrome as an [unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/development-basics/#load-unpacked).
 1. In a regular tab, select a string and right-click to view the context menu
 
+## Recommended vscode extensions
+
+-   [eslint](vscode:extension/dbaeumer.vscode-eslint)
+-   [prettier](vscode:extension/esbenp.prettier-vscode)
+-   [jest](vscode:extension/Orta.vscode-jest)
+
 ## Other commands
 
--   `npm run test` - run the tests in jest
 -   `npm run release` - create a release zip in `/release`
+-   `npm run test` - run the tests in jest
+-   `npm run lint` - run eslint
+-   `npm run prettier` - run prettier
+-   `npm run test-all` - run test, lint, and prettier
 
 ## Contribute
 
